@@ -1,0 +1,21 @@
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+textarea {
+    resize: vertical;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+}
+
+pre {
+    overflow-y: auto;
+}

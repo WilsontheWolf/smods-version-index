@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Tools</title>
+	<script type="module">
+		window.data = %data%;
+		data.forEach(v => {
+			const el = document.getElementById(v.version)
+			v.el = el
+		});
+		function filter(fn) {
+			data.forEach(v => {
+				if (!fn(v)) v.el.style.display = "none"
+				else v.el.style.display = ""
+			})
+		}
+		const search = document.getElementById("search")
+		function searchProcess(str) {
+			return str.toLowerCase().replaceAll(/[\s~\-]/g, "")
+		}
+		function handleSearch() {
+			const query = searchProcess(search.value)
+			filter((v) => searchProcess(v.version).includes(query) || v.tags.some(t => searchProcess(t).includes(query)))
+		}
+		search.addEventListener("input", handleSearch)
+		handleSearch() // For browser rembering
+	</script>
+</head>
+<body>
+	<h1>Steamodded Version Index</h1>
+	<input id="search" type="text" placeholder="Search"></input>
+	%html%
+</body>
+</html>
