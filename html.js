@@ -28,6 +28,6 @@ const html = data.map(d => {
 
 const embeddedData = JSON.stringify(data.map(d => ({version: d.version, tags: d.tags.map(t => t[0])})))
 
-const out = template.replace("%html%", html).replace("%data%", embeddedData);
+const out = template.replaceAll("%base%", baseURL).replace("%html%", html).replace("%data%", embeddedData);
 
 fs.writeFileSync("data.html", out);
