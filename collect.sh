@@ -4,7 +4,7 @@ set -o errexit -o nounset
 
 cd smods
 
-git fetch > /dev/null
+git fetch --quiet > /dev/null
 
 git pull > /dev/null
 
