@@ -1,6 +1,10 @@
 #!/bin/bash
 
+set -o errexit -o nounset
+
 set -e
+
+cd "$(dirname "$0")"
 
 if [ ! -d ./smods ]; then
 	git clone https://github.com/Steamodded/smods smods
@@ -15,8 +19,8 @@ node process.js
 echo Building HTML...
 node html.js
 
-rm -rf build 2>/dev/null
+rm -rf build/* 2>/dev/null
 
-cp -r public build
+cp -r public/* build
 
 cp data.html build/index.html
